@@ -26,4 +26,31 @@ class ContactController extends Controller
             ->with('status', 'Contact created successfully.');
     }
 
+    public function detail(Contact $contact): View
+    {
+        return view('contacts.detail', compact('contact'));
+    }
+    
+     public function edit(Contact $contact): View
+    {
+        return view('contacts.edit', compact('contact'));
+    }
+
+    public function update(UpdateContactRequest $request, Contact $contact): RedirectResponse
+    {
+        $contact->update($request->validated());
+
+        return redirect()
+            ->route('index', $contact)
+            ->with('status', 'Contact updated successfully.');
+    }
+
+    public function delete(Contact $contact): RedirectResponse
+    {
+        $contact->delete();
+
+        return redirect()
+            ->route('index')
+            ->with('status', 'Contact deleted successfully.');
+    }
 }
