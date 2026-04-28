@@ -20,9 +20,9 @@
                         <td>{{ $contact->contact}}</td>
                         <td>{{ $contact->email}}</td>
                         <td>
-                            <a class="btn btn-detail">Detail</a>
-                            <a class="btn btn-edit">Edit</a>
-                            <form method="POST" class="inline">
+                            <a href="{{ route('contacts.detail', $contact) }}" class="btn btn-detail">Detail</a>
+                            <a href="{{ route('contacts.edit', $contact) }}" class="btn btn-edit">Edit</a>
+                            <form method="POST"  action="{{ route('contacts.delete', $contact) }}"  class="inline">
                             @csrf
                             @method('DELETE')
                             <button type="submit" onclick="return confirm('Delete this contact?')" class="btn btn-delete">Delete</button>
