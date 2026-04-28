@@ -17,4 +17,13 @@ class ContactController extends Controller
         return view('index', compact('contacts'));
     }
 
+    public function store(StoreContactRequest $request): RedirectResponse
+    {
+        Contact::create($request->validated());
+
+        return redirect()
+            ->route('index')
+            ->with('status', 'Contact created successfully.');
+    }
+
 }
